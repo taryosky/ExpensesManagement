@@ -1,0 +1,55 @@
+﻿@model AppointmentApp.Models.ViewModels.ExpenseVM
+@{
+    ViewData["Title"] = "Create expenses";
+}
+
+<form method="post" asp-controller="Expenses" asp-action="Create">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Add Item</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label asp-for="Expense.Name"></label>
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="Expense.Amount"></label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <input asp-for="Expense.Name" class="form-control"/>
+                        <span asp-validation-for="Expense.Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="Expense.Amount" class="form-control"/>
+                        <span asp-validation-for="Expense.Amount" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <select asp-for="Expense.ExpenseCategoryId" asp-items="@Model.categoriesSelect" class="form-control">
+                            <option selected>-- Select Category --</option>
+                        </select>
+                        <span asp-validation-for="Expense.ExpenseCategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-outline-info w-75" value="Create"/>
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-outline-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+}

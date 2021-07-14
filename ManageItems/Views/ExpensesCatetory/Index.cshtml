@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AppointmentApp.Models.ExpenseCategory>
+@{
+    ViewData["Title"] = "Add Expense category";
+}
+
+<div class="container p-3">
+    <div class="row pt-3">
+        <div class="col-6"><h2 class="text-primary">Borrowed Items List</h2></div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" asp-controller="ExpensesCatetory" class="btn btn-outline-primary">Create Category</a>
+        </div>
+    </div>
+    <br/>
+    @if (Model.Any())
+    {
+        <table class="table table-striped table-bordered" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td width="30">@item.Id</td>
+                        <td width="30">@item.Name</td>
+                        <td width="30%">
+                            <div class="w-100 btn-group" role="group">
+                                <a class="btn btn-outline-primary mx-1" asp-route-id="@item.Id" asp-controller="ExpensesCatetory" asp-action="Update">Update</a>
+                                <a class="btn btn-outline-danger mx-1" asp-route-id="@item.Id" asp-controller="ExpensesCatetory" asp-action="Delete">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No items</p>
+    }
+</div>

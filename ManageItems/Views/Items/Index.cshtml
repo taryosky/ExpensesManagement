@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AppointmentApp.Models.Item>
+    @{
+    ViewData["Title"] = "Items";
+    }
+
+    <div class="container p-3">
+        <div class="row pt-3">
+            <div class="col-6"><h2 class="text-primary">Borrowed Items List</h2></div>
+            <div class="col-6 text-right">
+                <a asp-action="Create" asp-controller="Items" class="btn btn-outline-primary">Create New Item</a>
+            </div>
+        </div>
+        <br/>
+        @if (Model.Any())
+        {
+        <table class="table table-striped table-bordered" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Borrower</th>
+                    <th>Lender</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td width="30">@item.Name</td>
+                    <td width="30">@item.Borrower</td>
+                    <td width="30">@item.Lender</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+        <p>No items</p>
+        }
+    </div>
